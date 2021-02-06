@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+​
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.min.js"
+        integrity="sha512-XI02ivhfmEfnk8CEEnJ92ZS6hOqWoWMKF6pxF/tC/DXBVxDXgs2Kmlc9CHA0Aw2dX03nrr8vF54Z6Mqlkuabkw=="
+        crossorigin="anonymous"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+​
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(200, 200);
+        document.body.appendChild(renderer.domElement);
+​
+        function add_cube(x, y, z, dx, dy, dz) {
+​
+            var geometry = new THREE.BoxGeometry();
+​
+​
+            var edges = new THREE.EdgesGeometry(geometry);
+            var line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x00ff00 }));
+            line.position.set(x, y, z)
+            line.scale.set(dx, dy, dz)
+            return line
+        }
+​
+        scene.add(add_cube(0, 0, 0, 1, .6, 1));
+        scene.add(add_cube(.4, .5, 0, .2, .4, .2));
+        scene.add(add_cube(.4, .9, 0, .4, .4, .4));
+        scene.add(add_cube(.7, .8, 0, .4, .1, .4));
+        scene.add(add_cube(0.2, -0.5, .2, .2, .4, .2));
+        scene.add(add_cube(0.3, -0.7, .2, .4, .1, .2));
+        scene.add(add_cube(0.2, -0.5, -0.2, .2, .4, .2));
+        scene.add(add_cube(0.3, -0.7, -0.2, .4, .1, .2));
+​
+        camera.position.z = 5;
+​
+        camera.rotation.z = 0 * Math.PI / 180
+​
+        renderer.render(scene, camera);
+​
+        document.addEventListener("keydown", function (event) {
+            if (event.keyCode === 13 && !(event.ctrlKey)) {
+                alert(`setting the duck distance to what you requested`);
+                console.log(document.getElementById("distance").value)
+​
+                camera.position.z = parseInt(document.getElementById("distance").value);
+​
+​
+                renderer.render(scene, camera);
+            }
+        });
+​
+        document.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13 && event.ctrlKey) {
+                alert(`setting the duck angle to what you requested`);
+                console.log(document.getElementById("angle").value)
+​
+                camera.rotation.z = parseInt(document.getElementById("angle").value) * Math.PI / 180
+​
+                renderer.render(scene, camera);
+            }
+        });
+    </script>
+    <label for="fname">How close do you want the duck?</label><br>
+    <input type="text" id="distance">meters
+    <br>
+    press enter after you choose
+​
+    <br> <br>
+​
+​
+    <label for="fname">please choose the ducks angle</label><br>
+    <input type="text" id="angle">degrees
+    <br>press the control button and enter after you choose
+</body>
+​
+</html>
