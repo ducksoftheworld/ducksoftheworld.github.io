@@ -1,0 +1,35 @@
+<!DOCTYPE html
+
+<html lang='en'>
+<head>
+	<title>Duck Dungeon</title>
+	<meta charset='UTF-8'>
+</head>
+<body>
+<h2>In the Duck Dungeon</h2><br><p>The hallway abruptly stops.</p><br>
+<img src='sittingduck.png'><br><p>The duck is still here.</p>
+<p>
+In the center of the room is a wooden plinth with a keyboard. It's a regular style keyboard, with all the normal buttons that your keyboard has,</p>
+<img src='keybd.png'>
+<p>
+You can type in the password and maybe you'll escape the Duck Dungon.</p>
+<form>
+    <label for="pswd"></label>
+    <input type="password" id="pswd">
+    <input type="button" value="Submit" onclick="computerd();" />
+</form>
+<script type="text/javascript">
+    function computerd() {
+        var confirmPassword = "a4@c2";
+        var password = document.getElementById("pswd").value;
+        if (password == confirmPassword) {
+             window.location="a4atc2.html";
+        }
+        else{
+            alert("Passwords do not match.");
+        }
+    }
+</script>
+
+</body>
+</html>
